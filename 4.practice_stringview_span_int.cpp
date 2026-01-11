@@ -102,3 +102,34 @@ int main()
 
     return 0;
 }
+
+// /******************************************************************************
+
+// Welcome to GDB Online.
+// GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+// C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+// Code, Compile, Run and Debug online from anywhere in world.
+
+// *******************************************************************************/
+// #include <iostream>
+
+// int main()
+// {
+//     std::cout<<"Hello World" << std::endl;
+    
+//     int arr[5] = {11, 22, 33, 44, 55};
+//     std::array<int, 5> stdarr = {111, 222, 333, 444, 555};
+//     // int* arrptr = stdarr.data();
+//     int* arrptr = arr;
+    
+//     // for (int it = 0; it < 4; it++) {
+//     //     arrptr++;
+//     // }
+//     for (int it = 0; it < 6; it++) {
+//         arrptr++;
+//     }
+    
+//     std::cout << "get the arr index 5: " << *arrptr << std::endl;  // unsafe
+
+//     return 0;
+// }
