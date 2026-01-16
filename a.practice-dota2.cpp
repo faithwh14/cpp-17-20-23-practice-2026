@@ -148,14 +148,86 @@ class TideHunter: public BaseHero<TidehunterFacet> {
 // Overloaded::Overloaded(class... Ts): Ts...
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// All pick, random, single draft
 
-class DoTA2 {
+enum class MatchingQuality {
+    Good,
+    Normal,
+    Bad
+};
+
+class GameMode {
     public:
-    explicit DoTA2() {}
-    ~DoTA2() {}
+    const MatchingQuality& GetMatchingQuality() const {
+        return mQuality;
+    }
+    // Do not reveal matching time
+
+    protected:
+    GameMode(const MatchingQuality& quality): mQuality(quality) {}
+    void SetMatchingTime(const MInt& m) {
+        matching_time = m;
+    }
+    
+    private:
+    MInt matching_time {300};
+    MatchingQuality mQuality;
 };
 
+class AllPick: public GameMode {
+    public:
+    AllPick(): GameMode(MatchingQuality::Good) {
+        SetMatchingTime(200);
+    }
 };
+
+class Random: public GameMode {
+    public:
+    Random(): GameMode(MatchingQuality::Good) {
+        SetMatchingTime(350);
+    }
+};
+
+class SingleDraft: public GameMode {
+    public:
+    SingleDraft(): GameMode(MatchingQuality::Bad) {
+        SetMatchingTime(450);
+    }
+};
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+class IGamePlay {
+    public:
+    ~IGamePlay() = default;
+
+    virtual void StartGame() = 0;
+    virtual void QuitGame() = 0;
+    virtual void PauseGame() = 0;
+    
+    protected:
+    IGamePlay() = default;
+};
+
+
+class DoTA2GamePlay: public IGamePlay {
+    public:
+    explicit DoTA2GamePlay() {}
+    ~DoTA2GamePlay() {}
+    
+    void StartGame() override {
+        // TODO
+    }
+    void QuitGame() override {
+        // TODO
+    }
+    void PauseGame() override {
+        // TODO
+    }
+};
+
+class DoTA2Player;  // TODO: mmr, rank medal, region
+
+}  // namespace dota2
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -168,6 +240,26 @@ int main()
     TideHunter tidehunter{
         DeadInTheWaterFacet()
     };
+    
+    SingleDraft singleDraft;
+    std::cout << "Check the single draft matching quality: ";
+    switch (singleDraft.GetMatchingQuality()) {
+        case MatchingQuality::Good: {
+            std::cout << "Good Matching Quality" << std::endl;
+            break;
+        }
+        case MatchingQuality::Normal: {
+            std::cout << "Normal Matching Quality" << std::endl;
+            break;
+        }
+        case MatchingQuality::Bad: {
+            std::cout << "Bad Matching Quality" << std::endl;
+            break;
+        }
+        default: {
+            std::cout << "Unknown Matching Quality" << std::endl;
+        }
+    }
 
     return 0;
 }
