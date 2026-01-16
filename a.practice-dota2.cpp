@@ -196,6 +196,8 @@ class SingleDraft: public GameMode {
 };
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// TODO: Incomplete side
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 class IGamePlay {
     public:
     ~IGamePlay() = default;
@@ -208,6 +210,15 @@ class IGamePlay {
     IGamePlay() = default;
 };
 
+class MatchingQueue {
+    public:
+    MatchingQueue() {}
+    ~MatchingQueue() {}
+    
+    private:
+    static constexpr int radiant{5};
+    static constexpr int dire{5};
+};
 
 class DoTA2GamePlay: public IGamePlay {
     public:
@@ -223,6 +234,9 @@ class DoTA2GamePlay: public IGamePlay {
     void PauseGame() override {
         // TODO
     }
+    
+    // private:
+    
 };
 
 class DoTA2Player;  // TODO: mmr, rank medal, region
